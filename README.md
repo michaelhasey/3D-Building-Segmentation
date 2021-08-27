@@ -12,14 +12,15 @@ Autonomous classification and segmentation of 3d objects using Deep Neural Netwo
 ## Pipeline
 
 ### Description
-The pipeline presented here can be broken down into 3 main stages; the building extraction stage, the dataset pre-processing and creation stage, and the model training stage.  
+The pipeline presented here can be broken down into 4 main stages; the building extraction stage, the dataset pre-processing and creation stage, the model training stage, and the visualizing results phase.  
 
 1. Within the first stage, large 3d urban models are broken down into thousands of individual buildings which can then be extracted and exported one-by-one as closed .obj files. In this experiment, the city of Montreal 3d city model was used and approx. 50,000 buildings were exported as individual .obj files. After further pre-processing, a portion of these 3d buildings (as chosen by the user) will be used as the training data to train the DNN PointNet model in step 3.
 
-2. Within the second stage, individual .obj building files chosen for training are pre-processed to match the input-data requirements of the PointNet model.  Requirements include size normalization, conversion into a 2048 point point-cloud, and pre-segmentation.  After these requirements are achieved via custom scripts, individual building models are then split into two file formats: a .pts model which is a list of coordinates (x,y,z) of all of its 2048 points, and a .seg file which contains the segementation category that corresponds to each individual point (ex. the segmentation category "1" representing "roof" which corresponds to the first point).  These two files represent the final data format to be used to train the model. In addition, train-test-evaluate JSON files are created via a custom script in order to break up the dataset into its corresponding categories as well as various .txt files required for training.  After completion of the previously mentioned steps, the training dataset is ready to be used.
+2. Within the second stage, individual .obj building files chosen for training are pre-processed to match the input-data requirements of the PointNet model.  Requirements include size normalization, conversion into a 2048 point point-cloud, and pre-segmentation.  After these requirements are achieved via custom scripts, individual building models are then split into two file formats: a .pts model which is a list of coordinates (x,y,z) of all of its 2048 points, and a .seg file which contains the segementation category that corresponds to each individual point (ex. the segmentation category "1" representing "roof" which corresponds to the first point).  These two files represent the final data format to be used to train the model. In addition, train-test-validate JSON files are created via a custom script in order to break up the dataset into its corresponding categories as well as various .txt files required for training.  After completion of the previously mentioned steps, the training dataset is ready to be used.
 
-3. Within the final stage, two PyTorch-based PointNet models are trained on the previously created dataset; one for 3d object classification and one for 3d object part-segmentation. Both of these models are based on the [original PointNet paper](https://arxiv.org/abs/1612.00593) and were sourced from [fxia22's PointNet Implimentation repo](https://github.com/fxia22/pointnet.pytorch) with slight modifications made to accomodate custom building data.  After training, these models can then be used to predict the class and part segmentation category for new unseen 3d building data.
+3. Within the third stage, two PyTorch-based PointNet models are trained on the previously created dataset; one for 3d object classification and one for 3d object part-segmentation. Both of these models are based on the [original PointNet paper](https://arxiv.org/abs/1612.00593) and were sourced from [fxia22's PointNet Implimentation repo](https://github.com/fxia22/pointnet.pytorch) with slight modifications made to accomodate custom building data.  After training, these models can then be used to predict the class and part segmentation category for new unseen 3d building data.
 
+4. Within the final stage, we use our models to make both classification and segmentation predictions and visualize our results using: 1) [fxia22's PointNet Implimentation repo](https://github.com/fxia22/pointnet.pytorch) for segmentation predictions, and 2) [yxlao's Open3D PointNet Jupyter Notebook](https://github.com/isl-org/Open3D-PointNet) for classification visualizations.
 
 ## Process
 
@@ -41,7 +42,9 @@ A custom parametric [grasshopper](https://www.rhino3d.com/6/new/grasshopper/) sc
 ![](readme_images/extracted_buildings2.png)
 An example of the grasshopper script quickly extracting and exporting individual buildings from the original .3md Montreal 3d data tile.
 
-#### 3. Select Buildings for Training Dataset
+### Stage 2: Dataset Pre-Processing & Creation
+
+#### 1. Select Buildings for Training Dataset
 
 As shown below, 2 building groups; "flat-top style" and "mansard style" rowhouses were manually collected to create datasets to train both the classification and segmentation PointNet models.  As PointNet is able to learn the patterns inherent in collections of similar styled 3d objects, it is important to ensure that similar style buildings are collected and organinzed into their associated style-based categories in order to ensure effective results. Though this manual process seems difficult, as few as 50 buildings per category can be used to adequately train the model.
 
@@ -49,24 +52,83 @@ As shown below, 2 building groups; "flat-top style" and "mansard style" rowhouse
 
 ![](readme_images/mansard_flattop.png)
 
-### Stage 2: Data Pre-Processing
-
-#### 1. Convert .obj Files to .off Format
+#### 2. Convert .obj Files to .off Format
 
 To begin the pre-processing stage, all .obj files must be converted into [.off file format](https://shape.cs.princeton.edu/benchmark/documentation/off_format.html) in order to be read by the normalization and cloud conversionscript in the next step. .off files represent goemetry by specifying the polygons of the model's surface.
 ```
 cd scripts
-! python obj_to_off.py
+python obj_to_off.py
 ```
-#### 2. Convert .off Files to Point Clouds, Normalize, and Export as .ply Files
+#### 3. Convert .off Files to Point Clouds, Normalize, and Export as .ply Files
 
 As PointNet requires point cloud data as input, the .off files must be first converted into a collection of points.  This is done by calculating the [barycentric coordinates](https://mathworld.wolfram.com/BarycentricCoordinates.html) of the polygon surface that make up the .off geometry. When complete, 2048 of these x,y,z coordinates are randomly chosen to represent the object. Once converted, a normalize point cloud function via unit sphere converts all of the points into a range between -1 & 1 in order to standardize the final point cloud size.  Finally, the normalized pointclouds are exported into [.ply format](http://paulbourke.net/dataformats/ply/) in order to be easily segmented within Rhino and further converted into the proper file formats in the next steps.  
 
 ```
-! python off_to_ply.py
+cd scripts
+python off_to_ply.py
 ```
 ![](readme_images/off_to_pointcloud.png)
 
-#### 3. Manually Pre-Segment .ply Geometry Files
+#### 4. Manually Pre-Segment .ply Building Geometry and Resave
 
 Each .ply building geometry file must be pre-segmented in order to be used for model training and testing.  For the project, Rhino3D was used to colorize all points according to building component.  In this case, 7 building component categories were used to segment the models.  Categories include: "ground floor", "walls", "extension", "roof", "windows", "chimney" and "front facade".  
+
+![](readme_images/segment.gif)
+
+#### 5. Create .pts and .seg files
+
+Next, the newly created .ply files are then split into two file formats: a .pts file which is a list of coordinates (x,y,z) of all of its 2048 points, and a .seg file which contains the segementation category that corresponds to each individual point (ex. the segmentation category "1" representing "roof" which corresponds to the first point).  These .pts and .seg files will be used as the final dataset to be input into both the classification and segmentation PointNet model.
+```
+cd scripts
+python pts_seg_files.py
+```
+#### 6. Create train/test split JSON files
+This step splits the dataset into 3 groups; training data (70%), testing data (20%), and validation data (10%).
+```
+cd scripts
+python json_list.py
+```
+
+#### 7. Update Text Files
+
+The following text files required manual updating.
+
+- pointnet/misc/modelnet_id.txt (update building index id)
+- pointnet/misc/num_seg_classes.txt (update number of segmentation groups per building category)
+- pointnet/montreal_data/synsetoffset2category.txt (update building category id)
+
+### Stage 3: Model Training
+
+We can then use our custom building dataset to train both the classification and segmentation PointNet models.
+
+#### 1. Train Classification Model
+```
+cd pointnet
+python train_classification.py --nepoch=100 --batchSize=8
+```
+
+#### 2. Train Segmentation Model
+```
+cd pointnet
+python train_segmentation.py --dataset "montreal_rowhouse_data" --nepoch=100 --batchSize=8
+```
+
+### Stage 4: Visualizing Results
+
+#### 1. Visualizing Classification Results
+Ensure that the latest saved model path file (.pth) is saved into the "visualize/class" folder.
+```
+cd visualize/class
+jupyter notebook
+# follow instructions in notebook to visualize results
+```
+
+#### 2. Visualizing Segmentation Results
+```
+cd visualize/seg
+python show_seg.py
+# only works in ubuntu
+```
+
+## Results
+
