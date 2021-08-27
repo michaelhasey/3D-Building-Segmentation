@@ -3,13 +3,14 @@
 
 ## Overview
 
-### Background: 
+
+#### Background: 
 Autonomous classification and segmentation of 3d objects using Deep Neural Networks (DNN) has become an extremely useful and effective technique leveraged within many fields including but not limited to the autonomous vehicle industry for roadway navigation, the robotics field for object interaction, and the medical field for 3d image analysis.  Though its accuracy, speed and clear benefits are well known, DNN based 3D object segmentation & classification methods have yet to be widely adopted within the Architecture, Engineering, & Construction (AEC) idustry.  However, as interest in AI continues to grow within the AEC industry as indicated by increased investment and research in Con-Tech tools such real-time construction site tracking, autonomous robotic navigation of architectural environments, and DNN-based architectural generation & analysis methods, the ability to rapidly classify and segment buildings into their parts and pieces becomes increasingly important.  ****** SAY SOMETHING ABOUT CAPTURING STYLE & SITUATED CHARACTERISTICS ******
 
-### Intro
+#### Intro
 This project provides a robust pipeline for the autonomous classification and segmentation of individual buildings extracted from large 3d urban models through the seamless combination of parametric modelling tools (Grasshopper), dataset preprocessing scripts, and DNN algorithms (PointNet).  
 
-### Pipeline Description
+#### Pipeline Description
 The pipeline presented here can be broken down into 3 main stages; the building extraction stage, the dataset pre-processing and creation stage, and the model training stage.  
 
 1. Within the first stage, large 3d urban models are broken down into thousands of individual buildings which can then be extracted and exported one-by-one as closed .obj files. In this experiment, the city of Montreal 3d city model was used and approx. 50,000 buildings were exported as individual .obj files. After further pre-processing, a portion of these 3d buildings (as chosen by the user) will be used as the training data to train the DNN PointNet model in step 3.
@@ -21,4 +22,15 @@ The pipeline presented here can be broken down into 3 main stages; the building 
 
 ## Process
 
-### Step 1
+### Stage 1: Building Extraction
+
+#### 1. Select A City
+
+Many cities and regions provide open-source 3d urban models available online and for download.  In this experiment, we used the 2016 [LOD2 Montreal City 3D Model](https://donnees.montreal.ca/ville-de-montreal/batiment-3d-2016-maquette-citygml-lod2-avec-textures2) in [.3dm format](https://fileinfo.com/extension/3dm) as shown below. The Montreal urban model is broken down into 65 tiles containing approx. 50,000 individual buildings total. Though other file formats can be used, our custom grasshopper tool in stage 1 was specifically designed to convert .3dm files into .obj file format.  However, many city models are already availble in .obj format, thus potentially simplifying the building-extraction method.  Some urban models already in .obj format include [Berlin](https://www.businesslocationcenter.de/en/economic-atlas/download-portal/), [Amsterdam](https://3d.bk.tudelft.nl/opendata/3dfier/), and [Helsinki](https://hri.fi/data/en_GB/dataset/helsingin-3d-kaupunkimalli).
+
+![seg](https://images.squarespace-cdn.com/content/v1/557f412fe4b045a546d01308/1630081996228-GSJK35QFH59M1KEROTF0/montreal_city_model.jpg?format=2500w)
+Coverage map showing extent of montreal urban model (left) and example of a single urban tile representing the city downtown core (right).
+
+#### 2. Extract Individual Buildings
+
+A custom parametric [grasshopper](https://www.rhino3d.com/6/new/grasshopper/) script was developed within the 3d modeling software [Rhino3d](https://www.rhino3d.com/) in order to automatically load each of the 65 .3dm city tiles, extract and close each building mesh seperately, and export as an .obj file on a per-building basis.  In order to ensure clean extractions and consistency, non-building artefacts, incomplete buildings, and buildings that contained multiple masses were automatically discarded.
