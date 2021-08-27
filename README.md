@@ -37,10 +37,9 @@ Coverage map showing extent of montreal urban model (left) and example of a sing
 A custom parametric [grasshopper](https://www.rhino3d.com/6/new/grasshopper/) script was developed within the 3d modeling software [Rhino3d](https://www.rhino3d.com/) in order to automatically load each of the 65 .3dm city tiles, extract and close each building mesh seperately, and export as an .obj file on a per-building basis.  In order to ensure clean extractions and consistency, non-building artefacts, incomplete buildings, and buildings that contained multiple masses were automatically discarded.
 
 ![](readme_images/grasshopper.gif)
-An example of the grasshopper script quickly extracting and exporting individual buildings from the original .3md Montreal 3d data tile.
 
 ![](readme_images/extracted_buildings2.png)
-Example of individual exported building meshes in .obj format
+An example of the grasshopper script quickly extracting and exporting individual buildings from the original .3md Montreal 3d data tile.
 
 #### 3. Select Buildings to Train Model
 
