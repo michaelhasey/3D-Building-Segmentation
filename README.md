@@ -3,15 +3,15 @@
 
 ## Overview
 
-#### Intro
+### Intro
 This project provides a robust pipeline for the autonomous classification and segmentation of individual buildings extracted from large 3d urban models through the seamless combination of parametric modelling tools (Grasshopper), dataset preprocessing scripts, and DNN algorithms (PointNet).  
 
-#### Background: 
+### Background: 
 Autonomous classification and segmentation of 3d objects using Deep Neural Networks (DNN) has become an extremely useful and effective technique leveraged within many fields including but not limited to the autonomous vehicle industry for roadway navigation, the robotics field for object interaction, and the medical field for 3d image analysis.  Though its accuracy, speed and clear benefits are well known, DNN based 3D object segmentation & classification methods have yet to be widely adopted within the Architecture, Engineering, & Construction (AEC) idustry.  However, as interest in AI continues to grow within the AEC industry as indicated by increased investment and research in Con-Tech tools such real-time construction site tracking, autonomous robotic navigation of architectural environments, and DNN-based architectural generation & analysis methods, the ability to rapidly classify and segment buildings into their parts and pieces becomes increasingly important.  ****** SAY SOMETHING ABOUT CAPTURING STYLE & SITUATED CHARACTERISTICS ******
 
 ## Pipeline
 
-#### Description
+### Description
 The pipeline presented here can be broken down into 3 main stages; the building extraction stage, the dataset pre-processing and creation stage, and the model training stage.  
 
 1. Within the first stage, large 3d urban models are broken down into thousands of individual buildings which can then be extracted and exported one-by-one as closed .obj files. In this experiment, the city of Montreal 3d city model was used and approx. 50,000 buildings were exported as individual .obj files. After further pre-processing, a portion of these 3d buildings (as chosen by the user) will be used as the training data to train the DNN PointNet model in step 3.
@@ -41,11 +41,23 @@ A custom parametric [grasshopper](https://www.rhino3d.com/6/new/grasshopper/) sc
 ![](readme_images/extracted_buildings2.png)
 An example of the grasshopper script quickly extracting and exporting individual buildings from the original .3md Montreal 3d data tile.
 
-#### 3. Select Buildings to Train Model
+#### 3. Select Buildings for Training Dataset
 
-In this step, 2 building groups; "flat-top style" and "mansard style" rowhouses were manually collected to train both the classification and segmentation PointNet models.  As PointNet is able to learn the patterns inherent in collections of similar styled 3d objects, it is important to ensure that similar style buildings are collected and organinzed into their associated groups in order to ensure effective results. Though this manual process seems difficult, as few as 50 buildings per category can be used to adequately train the model.
+As shown below, 2 building groups; "flat-top style" and "mansard style" rowhouses were manually collected to create datasets to train both the classification and segmentation PointNet models.  As PointNet is able to learn the patterns inherent in collections of similar styled 3d objects, it is important to ensure that similar style buildings are collected and organinzed into their associated style-based categories in order to ensure effective results. Though this manual process seems difficult, as few as 50 buildings per category can be used to adequately train the model.
 
-* In future work, unsupervized models will be used to automatically cluster buildings into their respective stylist categories, thus, speeding up the dataset creationn process and removing any bias and innacuracies within the training data selection process.
+* In future work, unsupervized models will be used to automatically cluster buildings into their respective stylist categories, thus, speeding up the dataset creation process and removing any bias and innacuracies within the training data selection process.
 
-![](readme_images/mansard_flattop.jpeg)
-An example of "mansard style" and "flat-top style" row houses manually collected from the database of exported .obj files.
+![](readme_images/mansard_flattop.png)
+
+### Stage 2: Data Pre-Processing
+
+#### 1. Convert .obj Files to .off Format
+
+To begin the pre-processing stage, all .obj files must be converted into [.off file format](https://shape.cs.princeton.edu/benchmark/documentation/off_format.html) in order to be read by the normalization and cloud conversionscript in the next step. .off files represent goemetry by specifying the polygons of the model's surface.
+```
+cd scripts
+! python obj_to_off.py
+```
+#### 2. Convert .off Files to Point Clouds, Normalize, and Export as .ply Files
+
+As PointNet requires point cloud data as input, the .off files must be first converted into a collection of points.  This is done by calculating the [barycentric coordinates](https://mathworld.wolfram.com/BarycentricCoordinates.html) of the polygon surface that make up the .off geometry. When complete, 2048 of these x,y,z coordinates are randomly chosen to represent the object. Once converted, a normalize point cloud function via unit sphere converts all of the points into a range between -1 & 1 in order to standardize the final point cloud size.  Finally, the normalized pointclouds are exported into [.ply format](http://paulbourke.net/dataformats/ply/) in order to be easily segmented within Rhino and further converted into the proper file formats in the next steps.  
