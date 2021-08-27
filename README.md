@@ -39,7 +39,7 @@ A custom parametric [grasshopper](https://www.rhino3d.com/6/new/grasshopper/) sc
 ![](readme_images/grasshopper.gif)
 An example of the grasshopper script quickly extracting and exporting individual buildings from the original .3md Montreal 3d data tile.
 
-![]("readme_images/extracted_buildings.png")
+![](readme_images/extracted_buildings2.png)
 Example of individual exported building meshes in .obj format
 
 #### 3. Select Buildings to Train Model
