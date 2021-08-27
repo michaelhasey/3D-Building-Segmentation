@@ -39,12 +39,14 @@ A custom parametric [grasshopper](https://www.rhino3d.com/6/new/grasshopper/) sc
 ![](readme_images/grasshopper.gif)
 An example of the grasshopper script quickly extracting and exporting individual buildings from the original .3md Montreal 3d data tile.
 
-![](extracted buildings.png)
+![](readme_images/extracted_buildings.png)
 Example of individual exported building meshes in .obj format
 
 #### 3. Select Buildings to Train Model
 
-In this step, 2 building groups; flat-top rowhouse style and mansard rowhouse style were manually collected to train both the classification and segmentation PointNet models.  As PointNet is able to learn the patterns inherent in collections of similar styled 3d objects, it is important to ensure that similar style buildings are collected and organinzed into their associated groups in order to ensure effective results. Though this manual process seems difficult, as few as 50 buildings per category can be used to adequately train the model.
+In this step, 2 building groups; "flat-top style" and "mansard style" rowhouses were manually collected to train both the classification and segmentation PointNet models.  As PointNet is able to learn the patterns inherent in collections of similar styled 3d objects, it is important to ensure that similar style buildings are collected and organinzed into their associated groups in order to ensure effective results. Though this manual process seems difficult, as few as 50 buildings per category can be used to adequately train the model.
 
 * In future work, unsupervized models will be used to automatically cluster buildings into their respective stylist categories, thus, speeding up the dataset creationn process and removing any bias and innacuracies within the training data selection process.
 
+![](readme_images/mansard_flattop.jpeg)
+An example of "mansard style" and "flat-top style" row houses manually collected from the database of exported .obj files.
