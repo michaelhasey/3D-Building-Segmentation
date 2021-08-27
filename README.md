@@ -61,3 +61,9 @@ cd scripts
 #### 2. Convert .off Files to Point Clouds, Normalize, and Export as .ply Files
 
 As PointNet requires point cloud data as input, the .off files must be first converted into a collection of points.  This is done by calculating the [barycentric coordinates](https://mathworld.wolfram.com/BarycentricCoordinates.html) of the polygon surface that make up the .off geometry. When complete, 2048 of these x,y,z coordinates are randomly chosen to represent the object. Once converted, a normalize point cloud function via unit sphere converts all of the points into a range between -1 & 1 in order to standardize the final point cloud size.  Finally, the normalized pointclouds are exported into [.ply format](http://paulbourke.net/dataformats/ply/) in order to be easily segmented within Rhino and further converted into the proper file formats in the next steps.  
+
+```
+! python off_to_ply.py
+```
+
+#### 3. Convert .off Files to Point Clouds, Normalize, and Export as .ply Files
