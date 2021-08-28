@@ -56,16 +56,14 @@ As shown below, 2 building groups; "flat-top style" and "mansard style" rowhouse
 
 To begin the pre-processing stage, all .obj files must be converted into [.off file format](https://shape.cs.princeton.edu/benchmark/documentation/off_format.html) in order to be read by the normalization and cloud conversionscript in the next step. .off files represent goemetry by specifying the polygons of the model's surface.
 ```
-cd scripts
-python obj_to_off.py
+python "scripts/obj_to_off.py"
 ```
 #### 3. Convert .off Files to Point Clouds, Normalize, and Export as .ply Files
 
-As PointNet requires point cloud data as input, the .off files must be first converted into a collection of points.  This is done by calculating the [barycentric coordinates](https://mathworld.wolfram.com/BarycentricCoordinates.html) of the polygon surface that make up the .off geometry. When complete, 2048 of these x,y,z coordinates are randomly chosen to represent the object. Once converted, a normalize point cloud function via unit sphere converts all of the points into a range between -1 & 1 in order to standardize the final point cloud size.  Finally, the normalized pointclouds are exported into [.ply format](http://paulbourke.net/dataformats/ply/) in order to be easily segmented within Rhino and further converted into the proper file formats in the next steps.  
+As PointNet requires point cloud data as input, the .off files must be first converted into a collection of points.  This is done by calculating the [barycentric coordinates](https://mathworld.wolfram.com/BarycentricCoordinates.html) of the polygon surface that make up the .off geometry. When complete, 2048 of these x,y,z coordinates are randomly chosen to represent the object. Once converted, a normalize point cloud function via unit sphere converts all of the points into a range between -1 & 1 in order to standardize the final point cloud size.  Finally, the normalized pointclouds are exported into [.ply format](http://paulbourke.net/dataformats/ply/) in order to be easily segmented within Rhino and further converted into the proper file formats in the next steps. This step is based on an [online tutorial](https://towardsdatascience.com/deep-learning-on-point-clouds-implementing-pointnet-in-google-colab-1fd65cd3a263) and is represented from lines 1 through 150 of our script "off_to_ply.py".
 
 ```
-cd scripts
-python off_to_ply.py
+python "scripts/off_to_ply.py"
 ```
 ![](readme_images/off_to_pointcloud.png)
 
@@ -79,14 +77,12 @@ Each .ply building geometry file must be pre-segmented in order to be used for m
 
 Next, the newly created .ply files are then split into two file formats: a .pts file which is a list of coordinates (x,y,z) of all of its 2048 points, and a .seg file which contains the segementation category that corresponds to each individual point (ex. the segmentation category "1" representing "roof" which corresponds to the first point).  These .pts and .seg files will be used as the final dataset to be input into both the classification and segmentation PointNet model.
 ```
-cd scripts
-python pts_seg_files.py
+python "scripts/pts_seg_files.py"
 ```
 #### 6. Create train/test split JSON files
 This step splits the dataset into 3 groups; training data (70%), testing data (20%), and validation data (10%).
 ```
-cd scripts
-python json_list.py
+python "scripts/json_list.py"
 ```
 
 #### 7. Update Text Files
@@ -118,14 +114,14 @@ python train_segmentation.py --dataset "montreal_rowhouse_data" --nepoch=100 --b
 #### 1. Visualizing Classification Results
 Ensure that the latest saved model path file (.pth) is saved into the "visualize/class" folder.
 ```
-cd visualize/class
+cd visualizations/class
 jupyter notebook
 # follow instructions in notebook to visualize results
 ```
 
 #### 2. Visualizing Segmentation Results
 ```
-cd visualize/seg
+cd visualizations/seg
 python show_seg.py
 # only works in ubuntu
 ```
