@@ -33,6 +33,9 @@ PointNet is "a deep neural network that directly consumes point clouds, which we
 
 The classification & segmentation PointNet models we used are implimented in PyTorch and are based on the [original PointNet paper](https://arxiv.org/abs/1612.00593) and sourced from [fxia22's PointNet Implimentation repo](https://github.com/fxia22/pointnet.pytorch) with slight modifications made to accomodate our custom building data. 
 
+![](readme_images/pointnet_architecture.png)
+PointNet architecture (sourced from original [PointNet Paper](https://arxiv.org/abs/1612.00593))
+
 ## Usage
 
 The following is a descriptive set of instructions to duplicate the work carried out in this repo.
