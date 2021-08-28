@@ -128,3 +128,6 @@ python show_seg.py
 
 ## Results
 
+### Classification Results
+
+After training Pointnet for 100 epochs with a batch size of 16, we achieved a classification accuracy of approx. 81.25% and loss of approx. 0.4834.
