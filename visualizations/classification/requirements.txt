@@ -1,4 +1,0 @@
-progressbar
-matplotlib
-ipdb
-requests
