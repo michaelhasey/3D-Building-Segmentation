@@ -25,7 +25,7 @@ The pipeline presented here can be broken down into 4 main stages; the building 
 
 - 50 "mansard style" houses represented as .pts & .seg files
 - 50 "row-house style" buildings represented as .pts & .seg files
-- Dataset available for download [here](https://drive.google.com/drive/folders/1SXFraG805kFRI_Fwp4wanDwHjQg5roaj?usp=sharing).  After download, move folder into "pointnet" folder in repo.
+- Dataset available for download [here](https://drive.google.com/drive/folders/1SXFraG805kFRI_Fwp4wanDwHjQg5roaj?usp=sharing).  After download, move folder into "data" folder in repo.
 
 ## Model: PointNet
 PointNet is "a deep neural network that directly consumes point clouds, which well respects the permutation invariance of points in the input [and] provides a unified architecture for applications ranging from object classification & part segmentation."
