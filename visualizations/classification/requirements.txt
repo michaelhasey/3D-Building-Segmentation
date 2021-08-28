@@ -1,0 +1,4 @@
+progressbar
+matplotlib
+ipdb
+requests
