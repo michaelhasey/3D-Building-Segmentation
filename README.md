@@ -3,20 +3,20 @@
 ## Overview
 
 ### Intro
-This project provides a robust pipeline for the <del>autonomous</del> classification and segmentation of individual buildings extracted from large 3d urban models through the seamless combination of parametric modelling tools (Grasshopper), dataset preprocessing scripts, and DNN algorithms (PointNet). 
+This project provides a robust pipeline for the <del>autonomous</del> classification and segmentation of individual buildings extracted from large 3d urban models through the seamless combination of parametric modelling tools (implemented in Grasshopper), dataset preprocessing scripts, and Deep Neural Networks (DNN) algorithms (PointNet).
 
 ### Background: 
-Autonomous classification and segmentation of 3d objects using Deep Neural Networks (DNN) has become an extremely useful and effective technique leveraged within many fields including but not limited to the autonomous vehicle industry for roadway navigation, the robotics field for object interaction, and the medical field for 3d image analysis.  Though its accuracy, speed and clear benefits are well known, DNN based 3D object segmentation & classification methods have yet to be widely adopted within the Architecture, Engineering, & Construction (AEC) industry.  However, as interest in AI continues to grow within the field as indicated by increased investment and research in Con-Tech tools such real-time construction site tracking, autonomous robotic navigation of architectural environments, and DNN-based architectural design generation & analysis methods, the ability to rapidly classify and segment buildings into their parts and pieces becomes increasingly important if we hope to advance the field.
+Autonomous (I am not sure if autonomous is the right term here, should it be automated?) classification and segmentation of <del>3d</del> (stick with 3D please) objects using Deep Neural Networks (DNN) has become an extremely useful and effective technique leveraged within many fields, including but not limited to, the autonomous vehicle industry for roadway navigation, the robotics field for object interaction, and the medical field for 3d image analysis.  Though its accuracy, speed, and clear benefits are well known, DNN-based 3D object segmentation & classification methods have yet to be widely adopted within the Architecture, Engineering, & Construction (AEC) industry.  However, as interest in Artificial Intelligence (AI) continues to grow within the field, as indicated by increased investment and research in Con-Tech tools such real-time construction site tracking, autonomous robotic navigation of architectural environments, and DNN-based architectural design generation & analysis methods, the ability to rapidly classify and segment buildings into their parts and pieces becomes increasingly important if we hope to advance the field. (this is a super long and potentially hard to read sentence, please break it down and simplify it)
 
 ![](readme_images/banner.png)
 
 ## Pipeline Description
 
-The pipeline presented here can be broken down into 4 main stages; the building extraction stage, the dataset pre-processing and creation stage, the model training stage, and the visualizing results stage.  
+The pipeline presented here can be broken down into four <del> 4 </del>  main stages; the building extraction stage, the dataset pre-processing and creation stage, the model training stage, and the visualizing results stage.  
 
-1. Within the first stage, large 3d urban models are broken down into thousands of individual buildings which can then be extracted and exported one-by-one as closed .obj files. In this experiment, the city of Montreal 3d city model was used and approx. 50,000 buildings were exported as individual .obj files. After further pre-processing, a portion of these 3d buildings (as chosen by the user) will be used as the training data to train the DNN PointNet model in step 3.
+1. Within the first stage, large 3d urban models are broken down into thousands of individual buildings which can then be extracted and exported one-by-one as closed *.obj* files. In this experiment, the city of Montreal 3d city model was used and approx. 50,000 buildings were exported as individual *.obj* files. After further pre-processing, a portion of these 3d buildings (as chosen by the user) will be used as the training data to train the DNN PointNet model in step 3.
 
-2. Within the second stage, individual .obj building files chosen for training are pre-processed to match the input-data requirements of the PointNet model.  Requirements include size normalization, conversion into a 2048 point point-cloud, and pre-segmentation.  After these requirements are achieved via custom scripts, individual building models are then split into two file formats: a .pts model which is a list of coordinates (x,y,z) of all of its 2048 points, and a .seg file which contains the segementation category that corresponds to each individual point (ex. the segmentation category "1" representing "roof" which corresponds to the first point).  These two files represent the final data format to be used to train the model. In addition, train-test-validate JSON files are created via a custom script in order to break up the dataset into its corresponding categories as well as various .txt files required for training.  After completion of the previously mentioned steps, the training dataset is ready to be used.
+2. Within the second stage, individual .obj building files chosen for training are pre-processed to match the input-data requirements of the PointNet model.  Requirements include size normalization, conversion into a 2048-point point-cloud, and pre-segmentation. After these requirements are achieved via custom scripts, individual building models are then split into two file formats: a *.pts* model which is a list of coordinates $(x,y,z)$ of all of its 2048 points, and a *.seg* file which contains the segementation category that corresponds to each individual point (ex. the segmentation category "1" representing "roof" which corresponds to the first point). These two files represent the final data format to be used to train the model. In addition, train-test-validate JSON files are created via a custom script in order to break up the dataset into its corresponding categories as well as various .txt files required for training.  After completion of the previously mentioned steps, the training dataset is ready to be used.
 
 3. Within the third stage, two PyTorch-based PointNet models are trained on the previously created dataset; one for 3d object classification and one for 3d object part-segmentation.  After training, these models can then be used to predict the class and part segmentation category for new unseen 3d building data.
 
@@ -29,6 +29,7 @@ The pipeline presented here can be broken down into 4 main stages; the building 
 - Dataset available for download [here](https://drive.google.com/drive/folders/1SXFraG805kFRI_Fwp4wanDwHjQg5roaj?usp=sharing).  After download, move folder into "data" folder in repo.
 
 ## Model: PointNet
+
 PointNet is "a deep neural network that directly consumes point clouds, which well respects the permutation invariance of points in the input [and] provides a unified architecture for applications ranging from object classification & part segmentation."
 
 The classification & segmentation PointNet models we used are implimented in PyTorch and are based on the [original PointNet paper](https://arxiv.org/abs/1612.00593) and sourced from [fxia22's PointNet Implimentation repo](https://github.com/fxia22/pointnet.pytorch) with slight modifications made to accomodate our custom building data. 
@@ -63,6 +64,8 @@ An example of the grasshopper script quickly extracting and exporting individual
 #### 1. Select Buildings to Use as Training Dataset
 
 As shown below, 2 building groups; "flat-top style" and "mansard style" rowhouses were manually collected to create datasets to train both the classification and segmentation PointNet models.  As PointNet is able to learn the patterns inherent in collections of similar styled 3d objects, it is important to ensure that similar style buildings are collected and organinzed into their associated style-based categories in order to ensure effective results. Though this manual process seems difficult, as few as 50 buildings per category can be used to adequately train the model.
+
+**Please make a to do list at the end of this repo and organize all these in the todo part**
 
 * In future work, unsupervized models will be used to automatically cluster buildings into their respective stylist categories, thus, speeding up the dataset creation process and removing any bias and innacuracies within the training data selection process.
 
@@ -160,3 +163,12 @@ For the "mansard" style buildings, model accuracy peaked at approx. 50.2% with a
 Future research will attempt to increase accuracy through increasing the dataset set size via augmentation and using more than points than the current count of 2048 in order to capture higher levels of detail and ensure that segmented parts are clearly defined.
 
 ![](readme_images/seg_results.png)
+
+# Acknowledgements
+Please add the acknowledgements here
+
+# References
+Please add all the references here too.
+
+**Add references and citations here**
+Find the right format to let people know how to cite your work.
