@@ -1,5 +1,7 @@
 # 3D Building Classification & Segmentation Pipeline
 
+* This is a work in progress...
+
 ## Overview
 
 ### Intro
