@@ -13,7 +13,20 @@ SHORTEN ABOVE SENTENCE -> Make more relevent to segmentation, why it is importan
 
 ![](readme_images/banner.png)
 
-## Pipeline Description
+
+**Table of Contents**
+
+- [Pipeline](#Pipeline)
+- [Dataset](#Dataset)
+  - [PointNet Model](#PointNet Model)
+- [Performance](#Performance)
+- [Acknowledgements](#Acknowledgements)
+- [References](#References)
+- [Citation](#Citation)
+- - [To Do](#To Do)
+
+
+## Pipeline
 
 The pipeline presented here can be broken down into four main stages; the building extraction stage, the dataset pre-processing and creation stage, the model training stage, and the visualizing results stage.  
 
@@ -31,7 +44,7 @@ The data used in this project includes 50 "mansard style" and 50 "row-house styl
 
 ![](readme_images/dataset.png)
 
-## Model: PointNet
+## PointNet Model
 
 PointNet is "a deep neural network that directly consumes point clouds, which well respects the permutation invariance of points in the input [and] provides a unified architecture for applications ranging from object classification & part segmentation."
 
@@ -71,6 +84,18 @@ IEEE, 1(2):4, 2017 Can be accessed [here](https://arxiv.org/abs/1612.00593)
 3. Intelligent System Lab Org. 2017. Open3D-PointNet. GitHub; [https://github.com/isl-org/Open3D-PointNet](https://github.com/isl-org/Open3D-PointNet).
 4. City of Montreal, 2016. 3D Buildings 2016 (Lo2 Model with Textures). [https://donnees.montreal.ca/ville-de-montreal/batiment-3d-2016-maquette-citygml-lod2-avec-textures2](https://donnees.montreal.ca/ville-de-montreal/batiment-3d-2016-maquette-citygml-lod2-avec-textures2)
 5. Karaev, N. 2020. Deep Learning on Point Clouds: Implimenting PointNet in Google Colab. [https://towardsdatascience.com/deep-learning-on-point-clouds-implementing-pointnet-in-google-colab-1fd65cd3a263](https://towardsdatascience.com/deep-learning-on-point-clouds-implementing-pointnet-in-google-colab-1fd65cd3a263)
+
+### Citation
+
+If you find our paper and dataset useful in your research, please consider citing:
+
+``` 
+@misc{mhasey2021,
+    title={3D Building Classification & Segmentation Pipeline},
+    author={Michael Hasey},
+    year={2021},
+}
+```
 
 
 ## To Do
