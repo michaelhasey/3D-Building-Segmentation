@@ -11,7 +11,7 @@ SHORTEN ABOVE SENTENCE -> Make more relevent to segmentation, why it is importan
 ![](readme_images/banner.png)
 
 
-**Table of Contents**
+##**Table of Contents**
 
 - [Pipeline](#Pipeline)
 - [Dataset](#Dataset)
