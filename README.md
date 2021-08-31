@@ -1,6 +1,5 @@
 # 3D Building Classification & Segmentation Pipeline
 
-* This is a work in progress...
 
 ## Overview
 
@@ -39,7 +38,39 @@ The classification & segmentation PointNet models we used are implimented in PyT
 ![](readme_images/pointnet_architecture.png)
 PointNet architecture (sourced from original [PointNet Paper](https://arxiv.org/abs/1612.00593))
 
-## Usage
+## Performance
+
+### Classification Model Performance
+
+For this experiment, our Pointnet classification model was trained on 100 different buildings (50 "mansard" style & 50 flat-roof "row house" style) for 100 epochs with a batch size of 16.  After training we achieved a classification accuracy of approx. 81.25% and loss of approx. 0.4834. Prediction examples are shown below as well as the training and test accuracy and loss results for the final training epoch.
+
+![](readme_images/class_predict_1.png)
+![](readme_images/class_predict_2.png)
+
+### Segmentation Model Performance
+
+For this experiment, our Pointnet segmentation model was trained on 100 different pre-segmented buildings (50 "mansard" style & 50 flat-roof "row house" style buildings) for 100 epochs with a batch size of 4.  For the "row house" style building, model accuracy peaked at approx. 78.72% with a loss of 0.7484.  This fairly high accuracy was likely due to the reduced number of segmented parts (3 - roof, facade, and remaining walls / floor) which were fairly consistent in shape across models. 
+
+For the "mansard" style buildings, model accuracy peaked at approx. 50.2% with a loss of 1.829.  Though seemingly mediocre, the Mansard style buildings are broken down into 7 segemented parts (chimnney, floor, windows, roof, extensions, front facade, and walls), thus getting 50% correct is somewhat impressive given the total number of potential mistakes possible.  
+
+Future research will attempt to increase accuracy through increasing the dataset set size via augmentation and using more than points than the current count of 2048 in order to capture higher levels of detail and ensure that segmented parts are clearly defined.
+
+![](readme_images/seg_results.png)
+
+# Acknowledgements
+The author would like to thank the [Computational Design Lab](http://code.arc.cmu.edu/) (CoDe Lab) at Carnegie Mellon University for its generous support and for providing the necessary hardware needed for this work.  The author is also indebted to [Jimo Rhee](https://soa.cmu.edu/jinmo-rhee) for his technical assistance, depth of knowledge and advice regarding various parts of this research project.  Finally, the author would like to thank [Ardavan Bidgoli](https://soa.cmu.edu/ardavan-bidgoli) for his guidance and positive support throughout this entire process.
+
+# References
+
+
+**Add references and citations here**
+Find the right format to let people know how to cite your work.
+
+
+
+
+
+## To Do
 
 The following is a descriptive set of instructions to duplicate the work carried out in this repo.
 
@@ -146,31 +177,3 @@ cd visualizations/seg
 python show_seg.py
 # only works in ubuntu
 ```
-
-## Performance
-
-### Classification Model Performance
-
-For this experiment, our Pointnet classification model was trained on 100 different buildings (50 "mansard" style & 50 flat-roof "row house" style) for 100 epochs with a batch size of 16.  After training we achieved a classification accuracy of approx. 81.25% and loss of approx. 0.4834. Prediction examples are shown below as well as the training and test accuracy and loss results for the final training epoch.
-
-![](readme_images/class_predict_1.png)
-![](readme_images/class_predict_2.png)
-
-### Segmentation Model Performance
-
-For this experiment, our Pointnet segmentation model was trained on 100 different pre-segmented buildings (50 "mansard" style & 50 flat-roof "row house" style buildings) for 100 epochs with a batch size of 4.  For the "row house" style building, model accuracy peaked at approx. 78.72% with a loss of 0.7484.  This fairly high accuracy was likely due to the reduced number of segmented parts (3 - roof, facade, and remaining walls / floor) which were fairly consistent in shape across models. 
-
-For the "mansard" style buildings, model accuracy peaked at approx. 50.2% with a loss of 1.829.  Though seemingly mediocre, the Mansard style buildings are broken down into 7 segemented parts (chimnney, floor, windows, roof, extensions, front facade, and walls), thus getting 50% correct is somewhat impressive given the total number of potential mistakes possible.  
-
-Future research will attempt to increase accuracy through increasing the dataset set size via augmentation and using more than points than the current count of 2048 in order to capture higher levels of detail and ensure that segmented parts are clearly defined.
-
-![](readme_images/seg_results.png)
-
-# Acknowledgements
-The author would like to thank the Computational Design Lab (CoDe Lab) at Carnegie Mellon University for its generous support and for providing the hardware necessary for this work.  The author is also indebted to Jimo Rhee for his technical assistance, depth of knowledge and advice regarding various parts of this research project.  Finally, the author would like to thank Ardavan Bidgoli for his guidance and positive support throughout this entire process.
-
-# References
-Please add all the references here too.
-
-**Add references and citations here**
-Find the right format to let people know how to cite your work.
