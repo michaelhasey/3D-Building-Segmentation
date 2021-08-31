@@ -15,12 +15,12 @@ SHORTEN ABOVE SENTENCE -> Make more relevent to segmentation, why it is importan
 
 - [Pipeline](#Pipeline)
 - [Dataset](#Dataset)
-  - [PointNet Model](#PointNet Model)
+- [Model](#Model)
 - [Performance](#Performance)
 - [Acknowledgements](#Acknowledgements)
 - [References](#References)
 - [Citation](#Citation)
-- - [To Do](#To Do)
+- [To-Do](#To-Do)
 
 
 ## Pipeline
@@ -41,7 +41,7 @@ The data used in this project includes 50 "mansard style" and 50 "row-house styl
 
 ![](readme_images/dataset.png)
 
-## PointNet Model
+## Model
 
 PointNet is "a deep neural network that directly consumes point clouds, which well respects the permutation invariance of points in the input [and] provides a unified architecture for applications ranging from object classification & part segmentation."
 
@@ -95,7 +95,7 @@ If you find our paper and dataset useful in your research, please consider citin
 ```
 
 
-## To Do
+## To-Do
 
 The following is a descriptive set of instructions to duplicate the work carried out in this repo.
 
