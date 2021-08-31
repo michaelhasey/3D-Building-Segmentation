@@ -21,11 +21,11 @@ The pipeline presented here can be broken down into four <del> 4 </del>  main st
 
 3. Within the third stage, two PyTorch-based PointNet models are trained on the previously created dataset; one for 3d object classification and one for 3d object part-segmentation.  After training, these models can then be used to predict the class and part segmentation category for new unseen 3d building data.
 
-4. Within the final stage, we use our models to make both classification and segmentation predictions and visualize our results using: 1) [fxia22's PointNet Implimentation repo](https://github.com/fxia22/pointnet.pytorch) for segmentation predictions, and 2) [yxlao's Open3D PointNet Jupyter Notebook](https://github.com/isl-org/Open3D-PointNet) for classification visualizations.
+4. Within the final stage, we use our models to make both classification and segmentation predictions and visualize our results using: 1) [fxia22's PointNet Implimentation repo](https://github.com/fxia22/pointnet.pytorch)[2] for segmentation predictions, and 2) [yxlao's Open3D PointNet Jupyter Notebook](https://github.com/isl-org/Open3D-PointNet)[3] for classification visualizations.
 
 ## Dataset
 
-The data used in this project includes 50 "mansard style" and 50 "row-house style" buildings represented as 3D pointclouds. These buildings were sourced from the  2016 [LOD2 Montreal City 3D Model](https://donnees.montreal.ca/ville-de-montreal/batiment-3d-2016-maquette-citygml-lod2-avec-textures2) which is represented as a mesh in [.3dm format](https://fileinfo.com/extension/3dm).  A custom grasshopper script was used to convert these buildings into the proper point cloud format required PointNet, the deep neural network model used to perform the classification and segementation experiment.
+The data used in this project includes 50 "mansard style" and 50 "row-house style" buildings represented as 3D pointclouds. These buildings were sourced from the  2016 [LOD2 Montreal City 3D Model](https://donnees.montreal.ca/ville-de-montreal/batiment-3d-2016-maquette-citygml-lod2-avec-textures2)[4] which is represented as a mesh in [.3dm format](https://fileinfo.com/extension/3dm).  A custom grasshopper script was used to convert these buildings into the proper point cloud format required PointNet, the deep neural network model used to perform the classification and segementation experiment.
 
 ![](readme_images/dataset.png)
 
@@ -33,10 +33,10 @@ The data used in this project includes 50 "mansard style" and 50 "row-house styl
 
 PointNet is "a deep neural network that directly consumes point clouds, which well respects the permutation invariance of points in the input [and] provides a unified architecture for applications ranging from object classification & part segmentation."
 
-The classification & segmentation PointNet models we used are implimented in PyTorch and are based on the [original PointNet paper](https://arxiv.org/abs/1612.00593) and sourced from [fxia22's PointNet Implimentation repo](https://github.com/fxia22/pointnet.pytorch) with slight modifications made to accomodate our custom building data. 
+The classification & segmentation PointNet models we used are implimented in PyTorch and are based on the [original PointNet paper](https://arxiv.org/abs/1612.00593)[1] and sourced from [fxia22's PointNet Implimentation repo](https://github.com/fxia22/pointnet.pytorch)[2] with slight modifications made to accomodate our custom building data. 
 
 ![](readme_images/pointnet_architecture.png)
-PointNet architecture (sourced from original [PointNet Paper](https://arxiv.org/abs/1612.00593))
+PointNet architecture (sourced from original [PointNet Paper](https://arxiv.org/abs/1612.00593))[1].
 
 ## Performance
 
@@ -58,16 +58,17 @@ Future research will attempt to increase accuracy through increasing the dataset
 ![](readme_images/seg_results.png)
 
 # Acknowledgements
-The author would like to thank the [Computational Design Lab](http://code.arc.cmu.edu/) (CoDe Lab) at Carnegie Mellon University for its generous support and for providing the necessary hardware needed for this work.  The author is also indebted to [Jimo Rhee](https://soa.cmu.edu/jinmo-rhee) for his technical assistance, depth of knowledge and advice regarding various parts of this research project.  Finally, the author would like to thank [Ardavan Bidgoli](https://soa.cmu.edu/ardavan-bidgoli) for his guidance and positive support throughout this entire process.
+The author would like to thank the [Computational Design Lab](http://code.arc.cmu.edu/) (CoDe Lab) at Carnegie Mellon University for its generous support and for providing the necessary hardware needed for this work.  The author is also indebted to [Jimo Rhee](https://soa.cmu.edu/jinmo-rhee) for his technical assistance, depth of knowledge and advice regarding various parts of this research project with particular emphasis on the .3dm to .obj grasshopper script.  Finally, the author would like to thank [Ardavan Bidgoli](https://soa.cmu.edu/ardavan-bidgoli) for his guidance and positive support throughout this entire process.
 
 # References
 
-
-**Add references and citations here**
-Find the right format to let people know how to cite your work.
-
-
-
+1. Charles R Qi, Hao Su, Kaichun Mo, and Leonidas J Guibas. Pointnet: Deep learning on point sets
+for 3d classification and segmentation. Proc. Computer Vision and Pattern Recognition (CVPR),
+IEEE, 1(2):4, 2017 Can be accessed [here](https://arxiv.org/abs/1612.00593)
+2. Xia, F. 2017. pointnetpytorch. GitHub; [https://github.com/isl-org/Open3D-PointNet](https://github.com/isl-org/Open3D-PointNet).
+3. Intelligent System Lab Org. 2017. Open3D-PointNet. GitHub; [https://github.com/isl-org/Open3D-PointNet](https://github.com/isl-org/Open3D-PointNet).
+4. City of Montreal, 2016. 3D Buildings 2016 (Lo2 Model with Textures). [https://donnees.montreal.ca/ville-de-montreal/batiment-3d-2016-maquette-citygml-lod2-avec-textures2](https://donnees.montreal.ca/ville-de-montreal/batiment-3d-2016-maquette-citygml-lod2-avec-textures2)
+5. Karaev, N. 2020. Deep Learning on Point Clouds: Implimenting PointNet in Google Colab. [https://towardsdatascience.com/deep-learning-on-point-clouds-implementing-pointnet-in-google-colab-1fd65cd3a263](https://towardsdatascience.com/deep-learning-on-point-clouds-implementing-pointnet-in-google-colab-1fd65cd3a263)
 
 
 ## To Do
@@ -78,7 +79,7 @@ The following is a descriptive set of instructions to duplicate the work carried
 
 #### 1. Download 3D Urban Model (.3dm)
 
-Many cities and regions provide open-source 3d urban models available online and for download.  In this experiment, we used the 2016 [LOD2 Montreal City 3D Model](https://donnees.montreal.ca/ville-de-montreal/batiment-3d-2016-maquette-citygml-lod2-avec-textures2) in [.3dm format](https://fileinfo.com/extension/3dm) as shown below. The Montreal urban model is broken down into 65 tiles containing approx. 50,000 individual buildings total. Though other file formats can be used, our custom grasshopper tool in stage 1 was specifically designed to convert .3dm files into .obj file format.  However, many city models are already availble in .obj format, thus potentially simplifying the building-extraction method.  Some urban models already in .obj format include [Berlin](https://www.businesslocationcenter.de/en/economic-atlas/download-portal/), [Amsterdam](https://3d.bk.tudelft.nl/opendata/3dfier/), and [Helsinki](https://hri.fi/data/en_GB/dataset/helsingin-3d-kaupunkimalli).
+Many cities and regions provide open-source 3d urban models available online and for download.  In this experiment, we used the 2016 [LOD2 Montreal City 3D Model](https://donnees.montreal.ca/ville-de-montreal/batiment-3d-2016-maquette-citygml-lod2-avec-textures2)[4] in [.3dm format](https://fileinfo.com/extension/3dm) as shown below. The Montreal urban model is broken down into 65 tiles containing approx. 50,000 individual buildings total. Though other file formats can be used, our custom grasshopper tool in stage 1 was specifically designed to convert .3dm files into .obj file format.  However, many city models are already availble in .obj format, thus potentially simplifying the building-extraction method.  Some urban models already in .obj format include [Berlin](https://www.businesslocationcenter.de/en/economic-atlas/download-portal/), [Amsterdam](https://3d.bk.tudelft.nl/opendata/3dfier/), and [Helsinki](https://hri.fi/data/en_GB/dataset/helsingin-3d-kaupunkimalli).
 
 ![seg](https://images.squarespace-cdn.com/content/v1/557f412fe4b045a546d01308/1630081996228-GSJK35QFH59M1KEROTF0/montreal_city_model.jpg?format=2500w)
 Coverage map showing extent of montreal urban model (left) and example of a single urban tile representing the city downtown core (right).
@@ -111,7 +112,7 @@ python "scripts/obj_to_off.py"
 ```
 #### 3. Convert .off Files to Point Clouds, Normalize, and Export as .ply Files
 
-As PointNet requires point cloud data as input, the .off files must be first converted into a collection of points.  This is done by calculating the [barycentric coordinates](https://mathworld.wolfram.com/BarycentricCoordinates.html) of the polygon surface that make up the .off geometry. When complete, 2048 of these x,y,z coordinates are randomly chosen to represent the object. Once converted, a normalize point cloud function via unit sphere converts all of the points into a range between -1 & 1 in order to standardize the final point cloud size.  Finally, the normalized pointclouds are exported into [.ply format](http://paulbourke.net/dataformats/ply/) in order to be easily segmented within Rhino and further converted into the proper file formats in the next steps. This step is based on an [online tutorial](https://towardsdatascience.com/deep-learning-on-point-clouds-implementing-pointnet-in-google-colab-1fd65cd3a263) and is represented from lines 1 through 150 of our script "off_to_ply.py".
+As PointNet requires point cloud data as input, the .off files must be first converted into a collection of points.  This is done by calculating the [barycentric coordinates](https://mathworld.wolfram.com/BarycentricCoordinates.html) of the polygon surface that make up the .off geometry. When complete, 2048 of these x,y,z coordinates are randomly chosen to represent the object. Once converted, a normalize point cloud function via unit sphere converts all of the points into a range between -1 & 1 in order to standardize the final point cloud size.  Finally, the normalized pointclouds are exported into [.ply format](http://paulbourke.net/dataformats/ply/) in order to be easily segmented within Rhino and further converted into the proper file formats in the next steps. This step is based on an [online tutorial](https://towardsdatascience.com/deep-learning-on-point-clouds-implementing-pointnet-in-google-colab-1fd65cd3a263)[5] and is represented from lines 1 through 150 of our script "off_to_ply.py".
 
 ```
 python "scripts/off_to_ply.py"
