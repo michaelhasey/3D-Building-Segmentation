@@ -42,14 +42,14 @@ PointNet architecture (sourced from original [PointNet Paper](https://arxiv.org/
 
 ## Performance
 
-### Classification Model Performance
+### Classification Model 
 
 For this experiment, our Pointnet classification model was trained on 100 different buildings (50 "mansard" style & 50 flat-roof "row house" style) for 100 epochs with a batch size of 16.  After training we achieved a classification accuracy of approx. 81.25% and loss of approx. 0.4834. Prediction examples are shown below as well as the training and test accuracy and loss results for the final training epoch.
 
 ![](readme_images/class_predict_1.png)
 ![](readme_images/class_predict_2.png)
 
-### Segmentation Model Performance
+### Segmentation Model
 
 For this experiment, our Pointnet segmentation model was trained on 100 different pre-segmented buildings (50 "mansard" style & 50 flat-roof "row house" style buildings) for 100 epochs with a batch size of 4.  For the "row house" style building, model accuracy peaked at approx. 78.72% with a loss of 0.7484.  This fairly high accuracy was likely due to the reduced number of segmented parts (3 - roof, facade, and remaining walls / floor) which were fairly consistent in shape across models. 
 
