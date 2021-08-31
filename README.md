@@ -147,7 +147,7 @@ python show_seg.py
 # only works in ubuntu
 ```
 
-## Results
+## Performance
 
 ### Classification Model Performance
 
@@ -167,7 +167,7 @@ Future research will attempt to increase accuracy through increasing the dataset
 ![](readme_images/seg_results.png)
 
 # Acknowledgements
-Please add the acknowledgements here
+The author would like to thank the Computational Design Lab (CoDe Lab) at Carnegie Mellon University for its generous support and for providing the hardware necessary for this work.  The author is also indebted to Jimo Rhee for his technical assistance, depth of knowledge and advice regarding various parts of this research project.  Finally, the author would like to thank Ardavan Bidgoli for his guidance and positive support throughout this entire process.
 
 # References
 Please add all the references here too.
