@@ -15,7 +15,7 @@ SHORTEN ABOVE SENTENCE -> Make more relevent to segmentation, why it is importan
 
 - [Pipeline](#Pipeline)
 - [Dataset](#Dataset)
-- [Model: PointNet](#Model: PointNet)
+- [Model](#Model)
 - [Performance](#Performance)
 - [Acknowledgements](#Acknowledgements)
 - [References](#References)
