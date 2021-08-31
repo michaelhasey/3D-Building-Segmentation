@@ -89,7 +89,6 @@ A custom parametric [grasshopper](https://www.rhino3d.com/6/new/grasshopper/) sc
 
 ![](readme_images/grasshopper.gif)
 
-![](readme_images/extracted_buildings2.png)
 An example of the grasshopper script quickly extracting and exporting individual buildings from the original .3md Montreal 3d data tile.
 
 ### Stage 2: Dataset Pre-Processing & Creation
