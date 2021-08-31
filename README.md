@@ -27,6 +27,8 @@ The pipeline presented here can be broken down into four <del> 4 </del>  main st
 
 The data used in this project includes 50 "mansard style" and 50 "row-house style" buildings represented as 3D pointclouds. These buildings were sourced from the  2016 [LOD2 Montreal City 3D Model](https://donnees.montreal.ca/ville-de-montreal/batiment-3d-2016-maquette-citygml-lod2-avec-textures2) which is represented as a mesh in [.3dm format](https://fileinfo.com/extension/3dm).  A custom grasshopper script was used to convert these buildings into the proper point cloud format required PointNet, the deep neural network model used to perform the classification and segementation experiment.
 
+![](readme_images/dataset.png)
+
 ## Model: PointNet
 
 PointNet is "a deep neural network that directly consumes point clouds, which well respects the permutation invariance of points in the input [and] provides a unified architecture for applications ranging from object classification & part segmentation."
