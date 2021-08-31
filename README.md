@@ -73,7 +73,7 @@ Future research will attempt to increase accuracy through increasing the dataset
 ![](readme_images/seg_results.png)
 
 # Acknowledgements
-The author would like to thank the [Computational Design Lab](http://code.arc.cmu.edu/) (CoDe Lab) at Carnegie Mellon University for its generous support and for providing the necessary hardware needed for this work.  The author is also indebted to [Jimo Rhee](https://soa.cmu.edu/jinmo-rhee) for his technical assistance, depth of knowledge and advice regarding various parts of this research project with particular emphasis on the .3dm to .obj grasshopper script.  Finally, the author would like to thank [Ardavan Bidgoli](https://soa.cmu.edu/ardavan-bidgoli) for his guidance and positive support throughout this entire process.
+The author would like to thank the [Computational Design Lab](http://code.arc.cmu.edu/) (CoDe Lab) at Carnegie Mellon University for its generous support and for providing the necessary hardware needed for this work.  The author is also indebted to [Jimo Rhee](https://soa.cmu.edu/jinmo-rhee) for his technical assistance, depth of knowledge and advice regarding various parts of this research project with particular emphasis on the .3dm to .obj grasshopper script which both he and I created together.  Finally, the author would like to thank [Ardavan Bidgoli](https://soa.cmu.edu/ardavan-bidgoli) for his guidance and positive support throughout this entire process.
 
 # References
 
