@@ -25,9 +25,7 @@ The pipeline presented here can be broken down into four <del> 4 </del>  main st
 
 ## Dataset
 
-- 50 "mansard style" houses represented as .pts & .seg files
-- 50 "row-house style" buildings represented as .pts & .seg files
-- Dataset available for download [here](https://drive.google.com/drive/folders/1SXFraG805kFRI_Fwp4wanDwHjQg5roaj?usp=sharing).  After download, move folder into "data" folder in repo.
+The data used in this project includes 50 "mansard style" and 50 "row-house style" buildings represented as 3D pointclouds. These buildings were sourced from the  2016 [LOD2 Montreal City 3D Model](https://donnees.montreal.ca/ville-de-montreal/batiment-3d-2016-maquette-citygml-lod2-avec-textures2) where each building was represented as a mesh.  A custom grasshopper script was used to convert these buildings into the proper point cloud format required PointNet, the deep neural network model used to perform the classification and segementation experiment.
 
 ## Model: PointNet
 
