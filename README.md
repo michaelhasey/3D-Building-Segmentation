@@ -4,20 +4,20 @@
 ## Overview
 
 ### Intro
-This project provides a robust pipeline for the <del>autonomous</del> classification and segmentation of individual buildings extracted from large 3d urban models through the seamless combination of parametric modelling tools (implemented in Grasshopper), dataset preprocessing scripts, and Deep Neural Networks (DNN) algorithms (PointNet).
+This project provides a robust pipeline for the classification and segmentation of individual buildings extracted from large 3d urban models through the seamless combination of parametric modelling tools (implemented in Grasshopper), dataset preprocessing scripts, and Deep Neural Networks (DNN) algorithms (PointNet).
 
 ### Background: 
-Autonomous (I am not sure if autonomous is the right term here, should it be automated?) classification and segmentation of <del>3d</del> (stick with 3D please) objects using Deep Neural Networks (DNN) has become an extremely useful and effective technique leveraged within many fields, including but not limited to, the autonomous vehicle industry for roadway navigation, the robotics field for object interaction, and the medical field for 3d image analysis.  Though its accuracy, speed, and clear benefits are well known, DNN-based 3D object segmentation & classification methods have yet to be widely adopted within the Architecture, Engineering, & Construction (AEC) industry.  However, as interest in Artificial Intelligence (AI) continues to grow within the field, as indicated by increased investment and research in Con-Tech tools such real-time construction site tracking, autonomous robotic navigation of architectural environments, and DNN-based architectural design generation & analysis methods, the ability to rapidly classify and segment buildings into their parts and pieces becomes increasingly important if we hope to advance the field. (this is a super long and potentially hard to read sentence, please break it down and simplify it)
+Automated classification and segmentation of 3D objects using Deep Neural Networks (DNN) has become an extremely useful and effective technique leveraged within many fields, including but not limited to, the autonomous vehicle industry for roadway navigation, the robotics field for object interaction, and the medical field for 3d image analysis.  Though its accuracy, speed, and clear benefits are well known, DNN-based 3D object segmentation & classification methods have yet to be widely adopted within the Architecture, Engineering, & Construction (AEC) industry.  However, as interest in Artificial Intelligence (AI) continues to grow within the field, as indicated by increased investment and research in Con-Tech tools such real-time construction site tracking, autonomous robotic navigation of architectural environments, and DNN-based architectural design generation & analysis methods, the ability to rapidly classify and segment buildings into their parts and pieces becomes increasingly important if we hope to advance the field. (this is a super long and potentially hard to read sentence, please break it down and simplify it)
 
 ![](readme_images/banner.png)
 
 ## Pipeline Description
 
-The pipeline presented here can be broken down into four <del> 4 </del>  main stages; the building extraction stage, the dataset pre-processing and creation stage, the model training stage, and the visualizing results stage.  
+The pipeline presented here can be broken down into four main stages; the building extraction stage, the dataset pre-processing and creation stage, the model training stage, and the visualizing results stage.  
 
 1. Within the first stage, large 3d urban models are broken down into thousands of individual buildings which can then be extracted and exported one-by-one as closed *.obj* files. In this experiment, the city of Montreal 3d city model was used and approx. 50,000 buildings were exported as individual *.obj* files. After further pre-processing, a portion of these 3d buildings (as chosen by the user) will be used as the training data to train the DNN PointNet model in step 3.
 
-2. Within the second stage, individual .obj building files chosen for training are pre-processed to match the input-data requirements of the PointNet model.  Requirements include size normalization, conversion into a 2048-point point-cloud, and pre-segmentation. After these requirements are achieved via custom scripts, individual building models are then split into two file formats: a *.pts* model which is a list of coordinates $(x,y,z)$ of all of its 2048 points, and a *.seg* file which contains the segementation category that corresponds to each individual point (ex. the segmentation category "1" representing "roof" which corresponds to the first point). These two files represent the final data format to be used to train the model. In addition, train-test-validate JSON files are created via a custom script in order to break up the dataset into its corresponding categories as well as various .txt files required for training.  After completion of the previously mentioned steps, the training dataset is ready to be used.
+2. Within the second stage, individual .obj building files chosen for training are pre-processed to match the input-data requirements of the PointNet model.  Requirements include size normalization, conversion into a 2048-point point-cloud, and pre-segmentation. After these requirements are achieved via custom scripts, individual building models are then split into two file formats: a *.pts* model which is a list of coordinates $(x,y,z)$ of all of its 2048 points, and a *.seg* file which contains the segementation category that corresponds to each individual point (ex. the segmentation category "1" representing "roof" which corresponds to the first point). These two files represent the final data format to be used to train the model. In addition, train-test-validate JSON files are created via a custom script in order to break up the dataset into its corresponding categories as well as various *.txt* files required for training.  After completion of the previously mentioned steps, the training dataset is ready to be used.
 
 3. Within the third stage, two PyTorch-based PointNet models are trained on the previously created dataset; one for 3d object classification and one for 3d object part-segmentation.  After training, these models can then be used to predict the class and part segmentation category for new unseen 3d building data.
 
@@ -79,18 +79,18 @@ The following is a descriptive set of instructions to duplicate the work carried
 
 #### 1. Download 3D Urban Model (.3dm)
 
-Many cities and regions provide open-source 3d urban models available online and for download.  In this experiment, we used the 2016 [LOD2 Montreal City 3D Model](https://donnees.montreal.ca/ville-de-montreal/batiment-3d-2016-maquette-citygml-lod2-avec-textures2)[4] in [.3dm format](https://fileinfo.com/extension/3dm) as shown below. The Montreal urban model is broken down into 65 tiles containing approx. 50,000 individual buildings total. Though other file formats can be used, our custom grasshopper tool in stage 1 was specifically designed to convert .3dm files into .obj file format.  However, many city models are already availble in .obj format, thus potentially simplifying the building-extraction method.  Some urban models already in .obj format include [Berlin](https://www.businesslocationcenter.de/en/economic-atlas/download-portal/), [Amsterdam](https://3d.bk.tudelft.nl/opendata/3dfier/), and [Helsinki](https://hri.fi/data/en_GB/dataset/helsingin-3d-kaupunkimalli).
+Many cities and regions provide open-source 3d urban models available online and for download.  In this experiment, we used the 2016 [LOD2 Montreal City 3D Model](https://donnees.montreal.ca/ville-de-montreal/batiment-3d-2016-maquette-citygml-lod2-avec-textures2)[4] in [*.3dm* format](https://fileinfo.com/extension/3dm) as shown below. The Montreal urban model is broken down into 65 tiles containing approx. 50,000 individual buildings total. Though other file formats can be used, our custom grasshopper tool in stage 1 was specifically designed to convert *.3dm* files into *.obj* file format.  However, many city models are already availble in *.obj* format, thus potentially simplifying the building-extraction method.  Some urban models already in *.obj* format include [Berlin](https://www.businesslocationcenter.de/en/economic-atlas/download-portal/), [Amsterdam](https://3d.bk.tudelft.nl/opendata/3dfier/), and [Helsinki](https://hri.fi/data/en_GB/dataset/helsingin-3d-kaupunkimalli).
 
 ![seg](https://images.squarespace-cdn.com/content/v1/557f412fe4b045a546d01308/1630081996228-GSJK35QFH59M1KEROTF0/montreal_city_model.jpg?format=2500w)
 Coverage map showing extent of montreal urban model (left) and example of a single urban tile representing the city downtown core (right).
 
 #### 2. Extract Individual Buildings
 
-A custom parametric [grasshopper](https://www.rhino3d.com/6/new/grasshopper/) script was developed within the 3d modeling software [Rhino3d](https://www.rhino3d.com/) in order to automatically load each of the 65 .3dm city tiles, extract and close each building mesh seperately, and export as an .obj file on a per-building basis.  In order to ensure clean extractions and consistency, non-building artefacts, incomplete buildings, and buildings that contained multiple masses were automatically discarded.
+A custom parametric [grasshopper](https://www.rhino3d.com/6/new/grasshopper/) script was developed within the 3d modeling software [Rhino3d](https://www.rhino3d.com/) in order to automatically load each of the 65 *.3dm* city tiles, extract and close each building mesh seperately, and export as an *.obj* file on a per-building basis.  In order to ensure clean extractions and consistency, non-building artefacts, incomplete buildings, and buildings that contained multiple masses were automatically discarded.
 
 ![](readme_images/grasshopper.gif)
 
-An example of the grasshopper script quickly extracting and exporting individual buildings from the original .3md Montreal 3d data tile.
+An example of the grasshopper script quickly extracting and exporting individual buildings from the original *.3dm* Montreal 3d data tile.
 
 ### Stage 2: Dataset Pre-Processing & Creation
 
@@ -104,15 +104,15 @@ As shown below, 2 building groups; "flat-top style" and "mansard style" rowhouse
 
 ![](readme_images/mansard_flattop.png)
 
-#### 2. Convert .obj Files to .off Format
+#### 2. Convert *.obj* Files to *.off* Format
 
-To begin the pre-processing stage, all .obj files must be converted into [.off file format](https://shape.cs.princeton.edu/benchmark/documentation/off_format.html) in order to be read by the normalization and cloud conversionscript in the next step. .off files represent goemetry by specifying the polygons of the model's surface.
+To begin the pre-processing stage, all *.obj* files must be converted into [*.off* file format](https://shape.cs.princeton.edu/benchmark/documentation/off_format.html) in order to be read by the normalization and cloud conversionscript in the next step. *.off* files represent goemetry by specifying the polygons of the model's surface.
 ```
 python "scripts/obj_to_off.py"
 ```
-#### 3. Convert .off Files to Point Clouds, Normalize, and Export as .ply Files
+#### 3. Convert *.off* Files to Point Clouds, Normalize, and Export as *.ply* Files
 
-As PointNet requires point cloud data as input, the .off files must be first converted into a collection of points.  This is done by calculating the [barycentric coordinates](https://mathworld.wolfram.com/BarycentricCoordinates.html) of the polygon surface that make up the .off geometry. When complete, 2048 of these x,y,z coordinates are randomly chosen to represent the object. Once converted, a normalize point cloud function via unit sphere converts all of the points into a range between -1 & 1 in order to standardize the final point cloud size.  Finally, the normalized pointclouds are exported into [.ply format](http://paulbourke.net/dataformats/ply/) in order to be easily segmented within Rhino and further converted into the proper file formats in the next steps. This step is based on an [online tutorial](https://towardsdatascience.com/deep-learning-on-point-clouds-implementing-pointnet-in-google-colab-1fd65cd3a263)[5] and is represented from lines 1 through 150 of our script "off_to_ply.py".
+As PointNet requires point cloud data as input, the *.off* files must be first converted into a collection of points.  This is done by calculating the [barycentric coordinates](https://mathworld.wolfram.com/BarycentricCoordinates.html) of the polygon surface that make up the *.off* geometry. When complete, 2048 of these $(x,y,z)$ coordinates are randomly chosen to represent the object. Once converted, a normalize point cloud function via unit sphere converts all of the points into a range between -1 & 1 in order to standardize the final point cloud size.  Finally, the normalized pointclouds are exported into [*.ply* format](http://paulbourke.net/dataformats/ply/) in order to be easily segmented within Rhino and further converted into the proper file formats in the next steps. This step is based on an [online tutorial](https://towardsdatascience.com/deep-learning-on-point-clouds-implementing-pointnet-in-google-colab-1fd65cd3a263)[5] and is represented from lines 1 through 150 of our script "off_to_ply.py".
 
 ```
 python "scripts/off_to_ply.py"
@@ -121,13 +121,13 @@ python "scripts/off_to_ply.py"
 
 #### 4. Manually Pre-Segment .ply Building Geometry and Resave
 
-Each .ply building geometry file must be pre-segmented in order to be used for model training and testing.  For the project, Rhino3D was used to colorize all points according to building component.  In this case, 7 building component categories were used to segment the models.  Categories include: "ground floor", "walls", "extension", "roof", "windows", "chimney" and "front facade".  
+Each *.ply* building geometry file must be pre-segmented in order to be used for model training and testing.  For the project, Rhino3D was used to colorize all points according to building component.  In this case, 7 building component categories were used to segment the models.  Categories include: "ground floor", "walls", "extension", "roof", "windows", "chimney" and "front facade".  
 
 ![](readme_images/segment.gif)
 
-#### 5. Create .pts and .seg files
+#### 5. Create *.pts* and *.seg* files
 
-Next, the newly created .ply files are then split into two file formats: a .pts file which is a list of coordinates (x,y,z) of all of its 2048 points, and a .seg file which contains the segementation category that corresponds to each individual point (ex. the segmentation category "1" representing "roof" which corresponds to the first point).  These .pts and .seg files will be used as the final dataset to be input into both the classification and segmentation PointNet model.
+Next, the newly created *.ply* files are then split into two file formats: a *.pts* file which is a list of coordinates $(x,y,z)$ of all of its 2048 points, and a .seg file which contains the segementation category that corresponds to each individual point (ex. the segmentation category "1" representing "roof" which corresponds to the first point).  These *.pts* and *.seg* files will be used as the final dataset to be input into both the classification and segmentation PointNet model.
 ```
 python "scripts/pts_seg_files.py"
 ```
@@ -164,7 +164,7 @@ python train_segmentation.py --dataset "montreal_rowhouse_data" --nepoch=100 --b
 ### Stage 4: Visualizing Results
 
 #### 1. Visualizing Classification Results
-Ensure that the latest saved model path file (.pth) is saved into the "visualize/class" folder.
+Ensure that the latest saved model path file (*.pth*) is saved into the "visualize/class" folder.
 ```
 cd visualizations/class
 jupyter notebook
