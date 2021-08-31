@@ -1,12 +1,9 @@
 # 3D Building Classification & Segmentation Pipeline
 
-
-## Overview
-
-### Intro
+## Intro
 This project provides a robust pipeline for the classification and segmentation of individual buildings extracted from large 3d urban models through the seamless combination of parametric modelling tools (implemented in Grasshopper), dataset preprocessing scripts, and Deep Neural Networks (DNN) algorithms (PointNet).
 
-### Background: 
+## Background: 
 Automated classification and segmentation of 3D objects using Deep Neural Networks (DNN) has become an extremely useful and effective technique leveraged within many fields, including but not limited to, the autonomous vehicle industry for roadway navigation, the robotics field for object interaction, and the medical field for 3d image analysis.  Though its accuracy, speed, and clear benefits are well known, DNN-based 3D object segmentation & classification methods have yet to be widely adopted within the Architecture, Engineering, & Construction (AEC) industry.  However, as interest in Artificial Intelligence (AI) continues to grow within the field, as indicated by increased investment and research in Con-Tech tools such real-time construction site tracking, autonomous robotic navigation of architectural environments, and DNN-based architectural design generation & analysis methods, the ability to rapidly classify and segment buildings into their parts and pieces becomes increasingly important if we hope to advance the field. 
 
 SHORTEN ABOVE SENTENCE -> Make more relevent to segmentation, why it is important, where it is being used succesfully, why it is needed in aec.
@@ -72,10 +69,10 @@ Future research will attempt to increase accuracy through increasing the dataset
 
 ![](readme_images/seg_results.png)
 
-# Acknowledgements
+## Acknowledgements
 The author would like to thank the [Computational Design Lab](http://code.arc.cmu.edu/) (CoDe Lab) at Carnegie Mellon University for its generous support and for providing the necessary hardware needed for this work.  The author is also indebted to [Jimo Rhee](https://soa.cmu.edu/jinmo-rhee) for his technical assistance, depth of knowledge and advice regarding various parts of this research project with particular emphasis on the .3dm to .obj grasshopper script which both he and I created together.  Finally, the author would like to thank [Ardavan Bidgoli](https://soa.cmu.edu/ardavan-bidgoli) for his guidance and positive support throughout this entire process.
 
-# References
+## References
 
 1. Charles R Qi, Hao Su, Kaichun Mo, and Leonidas J Guibas. Pointnet: Deep learning on point sets
 for 3d classification and segmentation. Proc. Computer Vision and Pattern Recognition (CVPR),
@@ -85,7 +82,7 @@ IEEE, 1(2):4, 2017 Can be accessed [here](https://arxiv.org/abs/1612.00593)
 4. City of Montreal, 2016. 3D Buildings 2016 (Lo2 Model with Textures). [https://donnees.montreal.ca/ville-de-montreal/batiment-3d-2016-maquette-citygml-lod2-avec-textures2](https://donnees.montreal.ca/ville-de-montreal/batiment-3d-2016-maquette-citygml-lod2-avec-textures2)
 5. Karaev, N. 2020. Deep Learning on Point Clouds: Implimenting PointNet in Google Colab. [https://towardsdatascience.com/deep-learning-on-point-clouds-implementing-pointnet-in-google-colab-1fd65cd3a263](https://towardsdatascience.com/deep-learning-on-point-clouds-implementing-pointnet-in-google-colab-1fd65cd3a263)
 
-### Citation
+## Citation
 
 If you find our paper and dataset useful in your research, please consider citing:
 
