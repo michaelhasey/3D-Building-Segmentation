@@ -6,7 +6,7 @@ This project provides a robust pipeline for the classification and segmentation 
 ## Background: 
 Automated classification and segmentation of 3D objects using Deep Neural Networks (DNN) has become an extremely useful and effective technique leveraged within many fields, including but not limited to, the autonomous vehicle industry for roadway navigation, the robotics field for object interaction, and the medical field for 3d image analysis.  Though its accuracy, speed, and clear benefits are well known, DNN-based 3D object segmentation & classification methods have yet to be widely adopted within the Architecture, Engineering, & Construction (AEC) industry.  However, as interest in Artificial Intelligence (AI) continues to grow within the field, as indicated by increased investment and research in Con-Tech tools such real-time construction site tracking, autonomous robotic navigation of architectural environments, and DNN-based architectural design generation & analysis methods, the ability to rapidly classify and segment buildings into their parts and pieces becomes increasingly important if we hope to advance the field. 
 
-SHORTEN ABOVE SENTENCE -> Make more relevent to segmentation, why it is important, where it is being used succesfully, why it is needed in aec.
+SHORTEN ABOVE SENTENCE -> Make more relevent to segmentation, why it is importantm where it is being used succesfully,  why it is needed in aec
 
 ![](readme_images/banner.png)
 
