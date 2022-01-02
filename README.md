@@ -1,12 +1,12 @@
 # 3D Building Classification & Segmentation Pipeline
 
 ## Intro
-This project provides a robust pipeline for the classification and segmentation of individual buildings extracted from large 3d urban models through the seamless combination of parametric modelling tools (implemented in Grasshopper), dataset preprocessing scripts, and Deep Neural Networks (DNN) algorithms (PointNet).
+This project proposes a robust pipeline to autonomously segment un-labelled 3D building geometry into richly complex and informative building models made up of labelled architectural components (ex. roofs, windows, facades, walls, chimneys, etc.).  By combining both parametric modelling tools, dataset preprocessing scripts, and existing Deep Neural Networks (DNN) models (PointNet), our pipeline makes it easy to segment thousands of buildings in a fraction of the time it traditionally took  to complete this task via traditional and manual software methods.
+
 
 ## Background: 
-Automated classification and segmentation of 3D objects using Deep Neural Networks (DNN) has become an extremely useful and effective technique leveraged within many fields, including but not limited to, the autonomous vehicle industry for roadway navigation, the robotics field for object interaction, and the medical field for 3d image analysis.  Though its accuracy, speed, and clear benefits are well known, DNN-based 3D object segmentation & classification methods have yet to be widely adopted within the Architecture, Engineering, & Construction (AEC) industry.  However, as interest in Artificial Intelligence (AI) continues to grow within the field, as indicated by increased investment and research in Con-Tech tools such real-time construction site tracking, autonomous robotic navigation of architectural environments, and DNN-based architectural design generation & analysis methods, the ability to rapidly classify and segment buildings into their parts and pieces becomes increasingly important if we hope to advance the field. 
+Computer-vision based AI technology is becoming more prevalent within the AEC industry, for example, as applied to autonomous drone navigation or architectural design systems.  In order to function optimally for things like site navigation or 3D scene understanding, AI technology must recognize higher level architectural features. As a response, we present a new deep learning based pipeline that rapidly converts previously un-labelled 3D building geometry into richly labelled assemblages of architectural features, thus providing superior building information via a model that better represents reality.
 
-SHORTEN ABOVE SENTENCE -> Make more relevent to segmentation, why it is importantm where it is being used succesfully,  why it is needed in aec
 
 ![](readme_images/banner.png)
 
