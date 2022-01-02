@@ -8,7 +8,7 @@ This project proposes a robust pipeline to autonomously segment un-labelled 3D b
 Computer-vision based AI technology is becoming more prevalent within the AEC industry, for example, as applied to autonomous drone navigation or architectural design systems.  In order to function optimally for things like site navigation or 3D scene understanding, AI technology must recognize higher level architectural features. As a response, we present a new deep learning based pipeline that rapidly converts previously un-labelled 3D building geometry into richly labelled assemblages of architectural features, thus providing superior building information via a model that better represents reality.
 
 
-![](readme_images/banner.png)
+![](readme_images/banner_3.jpg)
 
 
 ## Table of Contents
